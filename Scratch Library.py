@@ -166,7 +166,25 @@ def readCSVfromPath():
     df = pd.read_csv(path, header=None)
     print(df)
 
+#takes dataframe, list of columns, and scaleType as string
 def scaleData(df,dfColumns='',scaleType=''):
+    if dfColumns=='':
+        dfColumns=df.columns.to_list()
+
+    if scaleType=='SFS':
+        for dfColumn in dfColumns:
+            df[dfColumn]= df[dfColumn]/df[dfColumn].max()
+
+    if scaleType=='Min-Max':
+        for dfColumn in dfColumns:
+            df[dfColumn] = (df[dfColumn]-df[dfColumn].min())/(df[dfColumn].max()-df[dfColumn].min())
+    if scaleType== 'ZSCORE':
+        for dfColumn in dfColumns:
+            df[dfColumn] = (df[dfColumn] - df[dfColumn].mean())/df[dfColumn].std()
+            
+    return df
+
+
     return 0
 
 def emptyTest():
