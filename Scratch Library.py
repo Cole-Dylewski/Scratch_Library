@@ -181,7 +181,7 @@ def scaleData(df,dfColumns='',scaleType=''):
     if scaleType== 'ZSCORE':
         for dfColumn in dfColumns:
             df[dfColumn] = (df[dfColumn] - df[dfColumn].mean())/df[dfColumn].std()
-            
+
     return df
 
 
@@ -207,6 +207,20 @@ def printListWCount(enList,counterStart=None):
     else:
         for count, ele in enumerate(enList,counterStart):
             print (count,ele)
+
+def binColumn(df, columnName, binNum,groupNames):
+    bins = np.linspace(
+        min(df[columnName]),
+        max(df[columnName]),
+        binNum
+    )
+    df[columnName]=pd.cut(
+        df[columnName],
+        bins,
+        labels=groupNames,
+        include_lowest=True
+    )
+    return df
 
 #change a column type:
 #df['Column] = df['Column'].astype('type')
