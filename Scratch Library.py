@@ -152,6 +152,11 @@ def readTxtFile(sourceFile,sourceDirectory=''):
     lines = (file.readlines())
     print(lines)
     return lines
+
+#takes a dictionary and converts it to a dataframe with the keys as columns
+def convertDict2DF(items):
+    return pd.DataFrame({k: [v] for k, v in items})
+
 #takes a dataframe as an argument, removes the empty columns and returns the dataframe
 
 def removeEmptyColumns(df):
