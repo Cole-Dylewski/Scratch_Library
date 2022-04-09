@@ -1,0 +1,45 @@
+cd <root folder for scratches>
+
+
+https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html
+
+git init
+git clone https://github.com/Cole-Dylewski/Scratch_Library
+
+#basic add and update commands
+git add *
+git commit -m "Commit message"
+git push origin master
+git status
+
+
+#create a new branch
+git checkout -b <branchname>
+
+#switch branches
+git checkout <branchname>
+
+#List all the branches in your repo, and also tell you what branch you're currently in:
+git branch
+
+#delete branch
+git branch -d <branchname>
+
+#push to branch
+git push origin <branchname>
+
+
+#Push all branches to your remote repository:
+git push --all origin
+
+#Fetch and merge changes on the remote server to your working directory:
+git pull
+
+#f you mess up, you can replace the changes in your working tree with the last content in head:
+Changes already added to the index, as well as new files, will be kept.
+git checkout -- <filename>
+
+#Instead, to drop all your local changes and commits,
+fetch the latest history from the server and point your local master branch at it, do this:
+git fetch origin
+git reset --hard origin/master
