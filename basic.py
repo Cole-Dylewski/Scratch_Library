@@ -8,7 +8,6 @@ import os
 from csv import writer
 from os import listdir
 from os.path import isfile
-import xlrd
 from tkinter import *
 from tkinter import ttk
 
@@ -88,10 +87,7 @@ def mergeDFs(mergerMasterDf,toBeMergedDf):
 
     return mergerMasterDf
 
-### Limits data output based on checking each row in a column against a logic check
-def filterDF(inputData):
-    outputData = inputData[inputData['Column Name']=='some value']
-    return outputData
+
 
 ###Prints data for observation
 def printDataStructure(inputData):
@@ -111,16 +107,7 @@ def printDataStructure(inputData):
 
 
 
-###treats each row as its own object, with each column as an object property.
-### Allows for more advanced logic on a row by row basis
-###expected usage: df["New Column"] =dF.apply(rowLogic,axis = 1)
-###Axis denotes horizontal
-def rowLogic(row):
-    #ex:
-    if(row['Column Name']== 'something'):
-        return 'something else'
-    else:
-        return None
+
 
 
 ### code to perform a pivot, and force some vertical columns into a Horizontal format
@@ -168,43 +155,11 @@ def removeEmptyColumns(df):
         else:
             print(i,'IS NOT EMPTY')
     return outputDf
-def readCSVfromPath():
-    path = 'https://archive.ics.uci.edu/ml/machine-learning-databases/autos/imports-85.data'
+def readCSVfromPath(path):
+    #path = 'https://archive.ics.uci.edu/ml/machine-learning-databases/autos/imports-85.data'
     df = pd.read_csv(path, header=None)
     print(df)
 
-#takes dataframe, list of columns, and scaleType as string
-def scaleData(df,dfColumns='',scaleType=''):
-    if dfColumns=='':
-        dfColumns=df.columns.to_list()
-
-    if scaleType=='SFS':
-        for dfColumn in dfColumns:
-            df[dfColumn]= df[dfColumn]/df[dfColumn].max()
-
-    if scaleType=='Min-Max':
-        for dfColumn in dfColumns:
-            df[dfColumn] = (df[dfColumn]-df[dfColumn].min())/(df[dfColumn].max()-df[dfColumn].min())
-    if scaleType== 'ZSCORE':
-        for dfColumn in dfColumns:
-            df[dfColumn] = (df[dfColumn] - df[dfColumn].mean())/df[dfColumn].std()
-
-    return df
-
-
-    return 0
-
-def emptyTest():
-    dfColumns = np.nan
-    dfColumns = None
-    dfColumns = ''
-    if dfColumns:
-        print('Has Value', dfColumns)
-    else:
-        print('Is Empty', dfColumns)
-    print(dfColumns == np.nan)
-    print(dfColumns == None)
-    print(dfColumns == '')
 
 #prints a list with a index
 def printListWCount(enList,counterStart=None):
@@ -215,24 +170,7 @@ def printListWCount(enList,counterStart=None):
         for count, ele in enumerate(enList,counterStart):
             print (count,ele)
 
-def binColumn(df, columnName, binNum,groupNames):
-    bins = np.linspace(
-        min(df[columnName]),
-        max(df[columnName]),
-        binNum
-    )
-    df[columnName]=pd.cut(
-        df[columnName],
-        bins,
-        labels=groupNames,
-        include_lowest=True
-    )
-    return df
 
-#change a column type:
-#df['Column] = df['Column'].astype('type')
-#df1=df.replace('?',np.NaN)
-#df=df1.dropna(subset=["price"], axis=0)
 
 ### STARTING POINT!
 
