@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import random
 import csv
-import openpyxl as op
 import tkinter.filedialog as fd
 import os
 from csv import writer
@@ -144,17 +143,7 @@ def readTxtFile(sourceFile,sourceDirectory=''):
 def convertDict2DF(items):
     return pd.DataFrame({k: [v] for k, v in items})
 
-#takes a dataframe as an argument, removes the empty columns and returns the dataframe
 
-def removeEmptyColumns(df):
-    outputDf = df
-    for i in outputDf.columns.to_list():
-        if outputDf[i].dropna().empty:
-            print(i,'IS EMPTY')
-            outputDf=outputDf.drop(i,axis=1)
-        else:
-            print(i,'IS NOT EMPTY')
-    return outputDf
 def readCSVfromPath(path):
     #path = 'https://archive.ics.uci.edu/ml/machine-learning-databases/autos/imports-85.data'
     df = pd.read_csv(path, header=None)
@@ -173,22 +162,22 @@ def printListWCount(enList,counterStart=None):
 
 
 ### STARTING POINT!
-
-###If you need just a file
-sourceFile = fd.askopenfilename()
-#sourceFile=r''
-print(sourceFile)
-df = convertFileToDF(sourceFile)
-print(df)
-###If you need a directory
-sourceDirectory =fd.askdirectory()
-#sourceDirectory=r''
-print(sourceDirectory)
-sourceFiles = listdir(sourceDirectory)
-print(sourceFiles)
-for sourceFile in sourceFiles:
+if __name__ == '__main__':
+    ###If you need just a file
+    sourceFile = fd.askopenfilename()
+    #sourceFile=r''
     print(sourceFile)
     df = convertFileToDF(sourceFile)
+    print(df)
+    ###If you need a directory
+    sourceDirectory =fd.askdirectory()
+    #sourceDirectory=r''
+    print(sourceDirectory)
+    sourceFiles = listdir(sourceDirectory)
+    print(sourceFiles)
+    for sourceFile in sourceFiles:
+        print(sourceFile)
+        df = convertFileToDF(sourceFile)
 
-printDataStructure(df)
+    printDataStructure(df)
 

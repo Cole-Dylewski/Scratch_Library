@@ -29,43 +29,53 @@ def normalization(df, scaleType ='',dfColumns=[]):
     for dfColumn in dfColumns:
         print(dfColumn)
         if(df[dfColumn].dtype==np.float_ or df[dfColumn].dtype==np.int64):
-            print(dfColumn, 'NORMALIZING!!!')
-            #print(dfColumn)
-            #print(df[dfColumn])
+            print(dfColumn)
+            print(df[dfColumn])
             print(df[dfColumn].dtype)
-
+            old = df[dfColumn]
             min = df[dfColumn].min()
             max = df[dfColumn].max()
             mean = df[dfColumn].mean()
             std = df[dfColumn].std()
-            
+
+            values = old
             #print(df[dfColumn].min(),df[dfColumn].max(),df[dfColumn].mean(),df[dfColumn].std())
             print(min,max,mean,std)
+            #rescaling to consistent range between 1 and 0
             if scaleType=='SFS':
                 #range 0:1
-
-                print(df[dfColumn])
-                    #print(df[dfColumn].to_string())
-                    #print('values',df[dfColumn]/max)
-
-                values = df[dfColumn]/max
-                    #print(values)
-                df[dfColumn] = values
+                values = old/max
 
             if scaleType=='Min-Max':
                 #range 0:1
-
-                df[dfColumn] = (df[dfColumn]-df[dfColumn].min())/(df[dfColumn].max()-df[dfColumn].min())
+                values = (old-min)/(max-min)
 
             if scaleType== 'ZSCORE':
                 #range ~ -3:3
-                df[dfColumn] = (df[dfColumn] - df[dfColumn].mean())/df[dfColumn].std()
-            print(dfColumn, 'NORMALIZED')
+                values = (old - mean)/std
+
+            if scaleType == 'Mean Normalization':
+                #range 0:1
+                values = (old-mean)/(max-min)
+
+
+            df[dfColumn] = values
 
         else:
             print("NOT NORMALIZING, COLUMN IS dtype:",df[dfColumn].dtype)
         print("COMPLETE---------------------------------------------------------------")
     return df
+
+#takes a dataframe as an argument, removes the empty columns and returns the dataframe
+def removeEmptyColumns(df):
+    outputDf = df
+    for i in outputDf.columns.to_list():
+        if outputDf[i].dropna().empty:
+            print(i,'IS EMPTY')
+            outputDf=outputDf.drop(i,axis=1)
+        else:
+            print(i,'IS NOT EMPTY')
+    return outputDf
 
 def emptyTest():
     dfColumns = np.nan
@@ -84,17 +94,20 @@ def dataFormatting(df,subset, dataType):
     outputDf[subset]=outputDf[[subset]].astype(dataType)
     return outputDf
 
-def binning(df,binNums,subset,group_names):
-    print('BINNING')
+#creates a new column with binned values
+#binNum = number of subcategories to create
+#group names is the names of the new subcategories
+def binning(df,binNums,columnName,group_names):
+    subset = columnName
     bins = np.linspace(min(df[subset]),max(df[subset]),binNums)
     newColName = subset+'-binned'
     df[newColName]=pd.cut(df[subset],bins,labels=group_names,include_lowest=True)
-    print(df)
+    #print(df)
     return df
 
+#creates new columns for each unique value with either a 1 or 0 as the value
 def categorize(df,subset):
     df = pd.get_dummies(df[subset])
-
 
     return df
 
@@ -113,6 +126,21 @@ def missingValues(df,dfColumns = [],method="drop",replaceIn=np.NAN,replaceOut=''
 
         if(method=='replace'):
             df[dfColumn]= df[dfColumn].replace(replaceIn,replaceOut)
+
+    return df
+
+def df_columns_to_float(df,dfColumns =[]):
+    if len(dfColumns)==0:
+        dfColumns=df.columns.to_list()
+    if type(dfColumns) == type([]):
+        for dfColumn in dfColumns:
+            try:
+                df[dfColumn] = df[dfColumn].astype('float')
+                #df[dfColumn] = df[dfColumn].replace(np.nan, df[i].mean())
+            except:
+                #print("NOT A FLOAT")
+                x = 1
+
 
     return df
 
