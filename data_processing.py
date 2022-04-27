@@ -114,6 +114,7 @@ def categorize(df,subset):
 def filterDF(df):
     outputData = df[df['Column Name']=='some value']
     return outputData
+
 #process missing values
 def missingValues(df,dfColumns = [],method="drop",replaceIn=np.NAN,replaceOut=''):
 
@@ -148,3 +149,6 @@ def df_columns_to_float(df,dfColumns =[]):
 #df['Column] = df['Column'].astype('type')
 #df1=df.replace('?',np.NaN)
 #df=df1.dropna(subset=["price"], axis=0)
+
+def sort_df(df, sortBy = [], ascending=False, na_position='first'):
+    return df.sort_values(by=sortBy, ascending=ascending, na_position=na_position)
