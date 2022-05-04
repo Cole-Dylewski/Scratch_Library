@@ -1,0 +1,17 @@
+https://docs.djangoproject.com/en/4.0/intro/tutorial01/
+    cd source directory folder
+
+    #create new project
+    django-admin startproject <project name>
+
+    cd project folder
+
+
+    #create new app
+    python manage.py startapp <app name>
+
+    #run project
+    python manage.py runserver <port number, is 8000 by default>
+
+    #build database tables
+    python manage.py migrate

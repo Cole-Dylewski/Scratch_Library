@@ -5,6 +5,7 @@ from sklearn.preprocessing import PolynomialFeatures
 
 
 def simple_linear_regression(df,features=[],label = ''):
+    #create the linear regression object
     lm = LinearRegression()
     x= df[features]
     y = df[label]
