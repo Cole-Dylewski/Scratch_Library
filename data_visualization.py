@@ -2,29 +2,29 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import numpy as np
+import plotly.graph_objects as go
 
 
-def chart(df, xLabel,xData,yLabel,yData,chartType='',chartTitle=''):
-    if chartType== 'scatter':
-        x = xData
-        y = yData
+def chart(df, xLabel, xData, yLabel, yData, chartType='', chartTitle=''):
+    x = xData
+    y = yData
+
+    if chartType == 'scatter':
         plt.scatter(x=x, y=y)
+    if chartType =='line-graph':
+        plt.plot(x, y)
 
 
-    #describes the data to identify proper model
-    if chartType=='regplot':
-        sns.regplot(x=xData.name,y=yData.name,data=df)
-        plt.ylim(0,)
+    # describes the data to identify proper model
+    if chartType == 'reg-plot':
+        sns.regplot(x=xData.name, y=yData.name, data=df)
+        plt.ylim(0, )
 
     if chartType == 'boxplot':
-        x = xData
-        y = yData
         sns.set_style("whitegrid")
-        sns.boxplot(x=xData,y=yData,data = df)
+        sns.boxplot(x=xData, y=yData, data=df)
 
     if chartType == 'heatmap':
-        x = xData
-        y = yData
         fig, ax = plt.subplots()
         im = ax.pcolor(df, cmap='RdBu')
 
@@ -45,14 +45,14 @@ def chart(df, xLabel,xData,yLabel,yData,chartType='',chartTitle=''):
 
         fig.colorbar(im)
 
-    #predicted vs actual
+    # predicted vs actual
     if chartType == 'distribution':
         print()
-    #helps identify if there is a curve to the data to update regression decisions
+    # helps identify if there is a curve to the data to update regression decisions
     if chartType == 'residual':
         print()
 
-    #compare model to actual data
+    # compare model to actual data
     if chartType == 'mean squared error':
         print()
 
@@ -60,3 +60,14 @@ def chart(df, xLabel,xData,yLabel,yData,chartType='',chartTitle=''):
     plt.xlabel(xlabel=xLabel)
     plt.ylabel(ylabel=yLabel)
     plt.show()
+
+
+
+def candelStick(df):
+    fig = go.Figure(data=[go.Candlestick(x=df['DATETIME'],
+                                         open=df['OPEN'],
+                                         high=df['HIGH'],
+                                         low=df['LOW'],
+                                         close=df['CLOSE'])])
+
+    fig.show()

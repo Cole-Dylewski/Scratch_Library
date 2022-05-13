@@ -159,7 +159,7 @@ def printListWCount(enList,counterStart=None):
         for count, ele in enumerate(enList,counterStart):
             print (count,ele)
 
-
+#print(dir(obj)) prints all functions belonging to a module
 
 ### STARTING POINT!
 if __name__ == '__main__':

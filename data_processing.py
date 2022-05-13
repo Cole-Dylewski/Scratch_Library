@@ -145,6 +145,16 @@ def df_columns_to_float(df,dfColumns =[]):
 
     return df
 
+
+def get_moving_average(dfColumn,windowSize=5):
+    columnData = dfColumn.to_list()
+    print(columnData)
+    window = range(windowSize)
+    print(window)
+
+
+
+
 #change a column type:
 #df['Column] = df['Column'].astype('type')
 #df1=df.replace('?',np.NaN)
