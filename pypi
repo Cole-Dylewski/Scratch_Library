@@ -1,0 +1,10 @@
+pip install twine
+pip install setuptools wheel
+
+python setup.py sdist bdist_wheel
+
+twine check dist/*
+
+twine upload dist/*
+
+pip install alpaca-historical-extract --upgrade

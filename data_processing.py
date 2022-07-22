@@ -1,5 +1,8 @@
 import numpy as np
 import pandas as pd
+import math
+
+pd.options.mode.chained_assignment = None  # default='warn'
 
 ###treats each row as its own object, with each column as an object property.
 ### Allows for more advanced logic on a row by row basis
@@ -148,12 +151,35 @@ def df_columns_to_float(df,dfColumns =[]):
 
 def get_moving_average(dfColumn,windowSize=5):
     columnData = dfColumn.to_list()
-    print(columnData)
+    #columnData = list(range(25))
+    #print(columnData)
     window = range(windowSize)
-    print(window)
+    middlePt = math.ceil(len(window)/2)
+    ##print(window,middlePt)
+    smaOUTPUT=[]
+    stdOUTPUT = []
+    for i in range(len(columnData)):
+    #for i in range(10):
+        if i <windowSize:
+            window = columnData[0:i+1]
+
+        else:
+            #window = columnData[i-middlePt:i+middlePt-1]
+            window = columnData[i-windowSize+1:i+1]
+        avg = sum(window)/len(window)
+        if i < windowSize:
+            std = None
+        else:
+            std = (sum([((x-avg)**2) for x in window])/ len(window))**.05
+        smaOUTPUT.append(round(avg,4))
+        stdOUTPUT.append(std)
+        #print(i,columnData[i],window, round(sum(window)/len(window),2))
+
+    #print(sma)
+    ##print(dfColumn.rolling(windowSize).mean().to_list())
 
 
-
+    return smaOUTPUT,stdOUTPUT
 
 #change a column type:
 #df['Column] = df['Column'].astype('type')

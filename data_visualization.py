@@ -6,14 +6,26 @@ import plotly.graph_objects as go
 
 
 def chart(df, xLabel, xData, yLabel, yData, chartType='', chartTitle=''):
-    x = xData
-    y = yData
 
-    if chartType == 'scatter':
-        plt.scatter(x=x, y=y)
-    if chartType =='line-graph':
+    if chartType in ['scatter', 'line-graph', 'reg-plot', 'boxplot', 'distribution', 'residual', 'mean squared error',
+                      'bollinger']:
+        plt.title(chartTitle)
+        plt.xlabel(xlabel=xLabel)
+        plt.ylabel(ylabel=yLabel)
+
+        for label, data in yData.items():
+
+            if chartType == 'bollinger':
+                plt.plot(xData,data,label = label)
+
+
+            if chartType == 'scatter':
+                plt.scatter(x=data, y=label)
+        plt.legend()
+        plt.show()
+
+    if chartType == 'line-graph':
         plt.plot(x, y)
-
 
     # describes the data to identify proper model
     if chartType == 'reg-plot':
@@ -47,20 +59,14 @@ def chart(df, xLabel, xData, yLabel, yData, chartType='', chartTitle=''):
 
     # predicted vs actual
     if chartType == 'distribution':
-        print()
+        pass
     # helps identify if there is a curve to the data to update regression decisions
     if chartType == 'residual':
-        print()
+        pass
 
     # compare model to actual data
     if chartType == 'mean squared error':
-        print()
-
-    plt.title(chartTitle)
-    plt.xlabel(xlabel=xLabel)
-    plt.ylabel(ylabel=yLabel)
-    plt.show()
-
+        pass
 
 
 def candelStick(df):
