@@ -1,0 +1,62 @@
+
+/*get the minimum record from a table*/
+SELECT p1.*
+FROM Products p1
+INNER join (/*CREATES TABLE OF ONLY MATCHES*/
+select *,min(price) from products
+)
+p2 on p1.productid = p2.productid;
+
+
+
+/*get the maximum record from a table*/
+SELECT p1.*
+FROM Products p1
+
+INNER join (
+/*produces the one record that is equal to the max */
+select *,max(price) from products
+)
+p2 on p1.productid = p2.productid;
+
+
+
+SELECT COUNT(column_name)
+FROM table_name
+WHERE condition;
+
+SELECT AVG(column_name)
+FROM table_name
+WHERE condition;
+
+SELECT SUM(column_name)
+FROM table_name
+WHERE condition;
+
+
+
+/*SELECT IF VALUE EXISTS IN ANOTHER COLUMN*/
+
+SELECT * FROM Customers
+WHERE Country IN (SELECT Country FROM Suppliers);
+
+
+/*IS VALUE WITHIN BOUNDARIES*/
+SELECT * FROM Products
+WHERE Price BETWEEN 10 AND 20;
+
+
+
+/*aggregate functions*/
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+HAVING condition
+ORDER BY column_name(s);
+
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country
+HAVING COUNT(CustomerID) > 5
+ORDER BY COUNT(CustomerID) DESC;
