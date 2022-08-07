@@ -188,3 +188,26 @@ def get_moving_average(dfColumn,windowSize=5):
 
 def sort_df(df, sortBy = [], ascending=False, na_position='first'):
     return df.sort_values(by=sortBy, ascending=ascending, na_position=na_position)
+
+
+def aggregateDf(df,listOfKeyFields, dictionaryofActions):
+
+    aggregatedDf = df.groupby([listOfKeyFields]).agg(dictionaryofActions)
+    return aggregatedDf
+
+
+#creates a new dataframe by building a dictionary from the groupby dataframe
+def aggregateColumnFunctions(subDf):
+    subDF = subDf.reset_index(drop=True)
+
+    tempDF = {}
+    tempDF['SYMBOL'] = subDF.iloc[0]['SYMBOL']
+    #tempDF['COLUMN NAME'] = subDF['OLD COLUMN'].function()
+    return pd.Series(tempDF, index=tempDF.keys())
+
+
+
+def groupByApplyFunc(df):
+
+
+    return df.groupby('KEY FIELDS').apply('aggregateFunc', 'additional argument')
