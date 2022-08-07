@@ -301,7 +301,7 @@ WHERE
 
 
 
-
+/* get average population of all cities per continent*/
 SELECT COUNTRY.CONTINENT, AVG(CITYAGG.POP)  FROM COUNTRY
 INNER JOIN (
     SELECT
