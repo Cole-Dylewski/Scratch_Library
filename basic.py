@@ -158,7 +158,9 @@ def printListWCount(enList,counterStart=None):
     else:
         for count, ele in enumerate(enList,counterStart):
             print (count,ele)
+def reverseList(rList):
 
+    return [rList[x] for x in range(len(rList)-1,-1,-1)]
 #print(dir(obj)) prints all functions belonging to a module
 
 ### STARTING POINT!
