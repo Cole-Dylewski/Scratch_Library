@@ -1,4 +1,7 @@
 
+##leetcode 704
+##runtime 804ms
+## POTENTIAL BUG IF MID IS LARGER THAN
 def binary_search(arr, target):
     start = 0
     end = len(arr)-1
@@ -15,3 +18,11 @@ def binary_search(arr, target):
             end=mid-1
 
     return -1
+
+
+##runtime 494ms
+def brute_search_index(arr: list[int],target):
+    if target in arr:
+        return arr.index(target)
+    else:
+        return -1
