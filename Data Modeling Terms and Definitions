@@ -1,0 +1,53 @@
+1NF (First Normal Form) Rules
+   Each table cell should contain a single value.
+   Each record needs to be unique.
+2NF (Second Normal Form) Rules
+   Rule 1- Be in 1NF
+   Rule 2- Single Column Primary Key that does not functionally dependant on any subset of candidate key relation
+3NF (Third Normal Form) Rules
+   Rule 1- Be in 2NF
+   Rule 2- Has no transitive functional dependencies
+      where 2 fields are inherently linked where the change in one field likely denotes a change in another within the same table
+      A transitive functional dependency is when changing a non-key column, might cause any of the other non-key columns to change
+4NF (Fourth Normal Form) Rules
+   If no database table instance contains two or more, independent and multivalued data describing the relevant entity, then it is in 4th Normal Form.
+
+5NF (Fifth Normal Form) Rules
+   A table is in 5th Normal Form only if it is in 4NF and it cannot be decomposed into any number of smaller tables without loss of data.
+
+6NF (Sixth Normal Form) Proposed
+   6th Normal Form is not standardized, yet however, it is being discussed by database experts for some time. Hopefully, we would have a clear & standardized definition for 6th Normal Form in the near future…
+
+
+
+
+What is a KEY in SQL?
+
+Note: Columns in a table that are NOT used to identify a record uniquely are called non-key columns.
+
+Table Key - identifys a record per table
+   A KEY in SQL is a value used to identify records in a table uniquely. An SQL KEY is a single column or combination of multiple columns used to uniquely identify rows or tuples in the table. SQL Key is used to identify duplicate information, and it also helps establish a relationship between multiple tables in the database.
+primary key - identifys a record per database
+   A primary is a single column value used to identify a database record uniquely
+      A primary key cannot be NULL
+      A primary key value must be unique
+      The primary key values should rarely be changed
+      The primary key must be given a value when a new record is inserted.
+composite key - key of multiple fields that together identify a unique record
+
+Foreign Key - references the primary key of another Table! It helps connect your Tables
+   A foreign key can have a different name from its primary key
+   It ensures rows in one table have corresponding rows in another
+   Unlike the Primary key, they do not have to be unique. Most often they aren’t
+   Foreign keys can be null even though primary keys can not
+   You will only be able to insert values into your foreign key that exist in the unique key in the parent table. This helps in referential integrity.
+
+
+Summary
+Database designing is critical to the successful implementation of a database management system that meets the data requirements of an enterprise system.
+Normalization in DBMS is a process which helps produce database systems that are cost-effective and have better security models.
+Functional dependencies are a very important component of the normalize data process
+Most database systems are normalized database up to the third normal forms in DBMS.
+A primary key uniquely identifies are record in a Table and cannot be null
+A foreign key helps connect table and references a primary key
+
