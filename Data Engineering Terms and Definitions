@@ -51,3 +51,32 @@ Most database systems are normalized database up to the third normal forms in DB
 A primary key uniquely identifies are record in a Table and cannot be null
 A foreign key helps connect table and references a primary key
 
+
+
+Data Structure Types
+    Structured
+        Data that follows a rigid format and can be organized into columns and rows
+            SQL Database
+            Online transaction processing
+            Spreadsheets
+            Online Forms
+            Sensor data
+            network and server logs
+    Semi-structured
+        mix of data that has consistent characteristics and data that does not conform to a rigid structure
+        Has organizational properties, but lacks a fixed or rigid schema
+        contains tags and elements, or metadata which is used to organize and group data
+            JSON
+            XML
+    Unstructured
+        Data that is complex and mostly qualitative information that cannot be structured into rows and columns
+        Has no formal structure
+            Web pages
+            video and audio files
+            images
+            social media feeds
+
+
+Data Repositories
+    Transactional (OLTP) - High Volume day to day operational data
+    Analytical (OLAP) - Optimized for conducting complex data analytics
