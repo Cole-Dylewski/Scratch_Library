@@ -1,0 +1,24 @@
+https://docs.docker.com/engine/reference/commandline/docker/
+#pull an image from docker repository
+docker pull <image-name>
+
+#RUN A DOCKER IMAGE
+docker run <image-name>
+
+#show any running images
+docker ps
+
+#docker run history
+docker ps -a
+
+#run container and keep live to run multiple commands
+docker run -it <image-name> sh
+
+#stop an active container
+docker stop <container-id>
+
+#deleting containers
+docker rm <container-id>
+
+#REMOVE ALL STOPPED CONTAINERS
+docker container prune
