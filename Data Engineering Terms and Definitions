@@ -80,3 +80,25 @@ Data Structure Types
 Data Repositories
     Transactional (OLTP) - High Volume day to day operational data
     Analytical (OLAP) - Optimized for conducting complex data analytics
+
+Database types
+    RDBMS - Relational database
+        ideal for storage, retrieval and processing of data for loarge folumes of data
+        Each table in a relational database has a unique set of rows and columns and relationships can be defined between tables, which minimizes data redundancy.
+    NOSQL - Not Only SQL
+        4 Types
+            Key-Value - Redis, MemCached, DynamoDB
+                Data in a key-value database is stored as a collection of key-value pairs.
+                The key represents an attribute of the data and is a unique identifier.
+                Both keys and values can be anything from simple integers or strings to complex JSON documents.
+                not Ideal for:
+                    Querying data on a specific data value
+                    if you need relationships between data values
+                    need multiple unique keys
+            Document-base - MongoDB, DocumentDB, CouchDb
+                Each record, and associated date is stored in a document
+                not ideal for:
+                    run complex search queries
+                    perform multi-operation transactions
+
+
