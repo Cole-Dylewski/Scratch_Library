@@ -1,0 +1,25 @@
+https://www.geeksforgeeks.org/how-to-run-linux-software-on-windows/
+
+sudo python3.8 -m pip install pandas -t build/python/lib/python3.8/site-packages
+
+https://stackoverflow.com/questions/63207385/how-do-i-install-pip-for-python-3-8-on-ubuntu-without-changing-any-defaults
+    wget https://bootstrap.pypa.io/get-pip.py
+    python3.8 get-pip.py
+
+Steps
+    run app Ubuntu for windows
+    inside of Terminal
+        cd 'Python Libraries'
+        sudo python3.8 -m pip install <python dependency> -t "python3.8\site-packages"
+            will save libraries to here: \\wsl.localhost\Ubuntu\root\Python Libraries\python3.8\site-packages
+
+    https://www.activestate.com/resources/quick-reads/how-to-update-all-python-packages/
+    Output a list of installed packages into a requirements file (requirements.txt):
+        pip freeze > requirements.txt
+
+    Edit requirements.txt, and replace all ‘==’ with ‘>=’. Use the ‘Replace All’ command in the editor.
+
+    Upgrade all outdated packages:
+        pip install -r requirements.txt --upgrade
+
+DONT USE ANYMORE: sudo python3.8 -m pip install <python dependency> -t "C:\Dropbox (Radian)\Rackspace Server\PostgreSQL\Python Scripts\lambdaLibrary\base_python_layer\build\python\lib\python3.8\site-packages"
